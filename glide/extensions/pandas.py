@@ -396,6 +396,25 @@ class DataFrameHTMLLoad(Node):
         else:
             self.push(df)
 
+class DataFrameApply(Node):
+    """Apply a transform to a Pandas DataFrame"""
+
+    def run(self, df, func, **kwargs):
+        """Use apply() on a DataFrame
+
+        Parameters
+        ----------
+        df : pandas.DataFrame
+            The pandas DataFrame to apply func to
+        func : callable
+            A callable that will be passed to df.apply
+        **kwargs
+            Keyword arguments passed to apply
+
+        """
+        raiseifnot(pd, "Please install Pandas to use this class")
+        df = df.apply(func, **kwargs)
+        self.push(df)
 
 class DataFrameApplyMap(Node):
     """Apply a transform to a Pandas DataFrame"""
